@@ -6,5 +6,5 @@ import { connectDB } from "./data/database.js"
 connectDB();
 //server listening on 4000
 app.listen(process.env.PORT, () => {
-    console.log("server is working on port 4000");
+    console.log("tadaaaa server is working :)");
 });

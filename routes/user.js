@@ -1,9 +1,14 @@
 import express from "express";
-import { User } from "../models/user.js";
-import { deleteUser, getAllUsers, getUserDetails, register, specialFunc, updateUser } from "../controllers/user.js";
+import {
+  getAllUsers,
+  getMyProfile,
+  login,
+  logout,
+  register,
+} from "../controllers/user.js";
+import { isAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
-
 
 // we will get all the users at users/all
 router.get("/all", getAllUsers);
@@ -11,15 +16,11 @@ router.get("/all", getAllUsers);
 //create users
 router.post("/new", register);
 
-//route for special id
-router.get("/userid/special", specialFunc);
+router.post("/login", login);
 
-//find by specific id
-router.route("/userid/:id")
-.get(getUserDetails)
-.put(updateUser)
-.delete(deleteUser);
+router.get("/logout", logout);
 
-
+//will get my profile
+router.get("/me", isAuthenticated, getMyProfile);  //we will add isAuthenticated front of each route where we want  that user must be logged in to access that route//
 
 export default router;
