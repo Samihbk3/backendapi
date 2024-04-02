@@ -14,5 +14,5 @@ export const isAuthenticated = async (req, res, next) => {
 
   req.user = await User.findById(decoded._id); // we will add it to req function so it will be available inside req once a user successfully logged in
 
-  next();//once it successfully logged in it will redirect to next route decoded data wil be inside req.
+  await next();//once it successfully logged in it will redirect to next route decoded data wil be inside req.
 };
